@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">TestCinema</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="question1">What?</string>
+    <string name="question1_rep1">fafza</string>
+    <string name="question1_rep2">sqfeq</string>
+    <string name="question1_rep3">qzfzqf</string>
+
+    <string name="question2">Who?</string>
+    <string name="question2_rep1">zdaf</string>
+    <string name="question2_rep2">asdsaf</string>
+    <string name="question2_rep3">azdad</string>
+</resources>
