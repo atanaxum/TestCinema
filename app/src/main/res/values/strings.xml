@@ -14,4 +14,19 @@
     <string name="question2_rep1">zdaf</string>
     <string name="question2_rep2">asdsaf</string>
     <string name="question2_rep3">azdad</string>
+
+    <string name="question3">Which?</string>
+    <string name="question3_rep1">zdaf</string>
+    <string name="question3_rep2">asdsaf</string>
+    <string name="question3_rep3">azdad</string>
+
+    <string name="question4">How?</string>
+    <string name="question4_rep1">zdaf</string>
+    <string name="question4_rep2">asdsaf</string>
+    <string name="question4_rep3">azdad</string>
+
+    <string name="question5">Why?</string>
+    <string name="question5_rep1">zdaf</string>
+    <string name="question5_rep2">asdsaf</string>
+    <string name="question5_rep3">azdad</string>
 </resources>

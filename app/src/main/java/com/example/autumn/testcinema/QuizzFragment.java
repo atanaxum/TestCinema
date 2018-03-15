@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +25,11 @@ import android.widget.Toast;
 @SuppressLint("ValidFragment")
 public class QuizzFragment extends Fragment{
     private static final String TAG = "QuizzFragment";
-    private final int id;
+    private int id;
+    private int usr;
     private Button btnValider;
 
     ViewPager page;
-    BaseDataQuestion bdq;
 
     public QuizzFragment(int id ) {
         this.id = id;
@@ -38,54 +39,57 @@ public class QuizzFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.quiz_question,container,false);
-        bdq = new BaseDataQuestion( v.getContext() );
+        page = getActivity().findViewById(R.id.container);
 
-        int resQuest =getResources().getIdentifier("question"+ this.getNumero(),"string", v.getContext().getPackageName());
-
+        int resQuest = getResources().getIdentifier("question"+ this.getID(),"string", v.getContext().getPackageName());
         TextView quest = v.findViewById(R.id.question);
         quest.setText(getString( resQuest ));
 
-        RadioGroup rg = v.findViewById( R.id.rg );
+        final RadioGroup rg = v.findViewById( R.id.rg );
+        this.setUSR( rg.indexOfChild( v.findViewById( rg.getCheckedRadioButtonId())) );
+
+        btnValider = v.findViewById(R.id.valider);
+        btnValider.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int id = QuizzFragment.this.getID();
+                int usr = QuizzFragment.this.getUSR();
+                page.setCurrentItem(id);
+                ((Quizz)getActivity()).updateData( id,usr );
+            }
+        } );
+        btnValider.setEnabled( false );
 
         for(int i = 1; i<=3; i++){
-            int resText =getResources().getIdentifier("question"+ this.getNumero()+"_rep"+i,"string", v.getContext().getPackageName());
+            int resText =getResources().getIdentifier("question"+ this.getID()+"_rep"+i,"string", v.getContext().getPackageName());
             int res =getResources().getIdentifier("reponse"+i,"id", v.getContext().getPackageName());
             RadioButton btnRep = v.findViewById( res );
             btnRep.setText( getString( resText ) );
+            btnRep.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
+                    int id = QuizzFragment.this.getID();
+                    QuizzFragment.this.setUSR( rg.indexOfChild( view.findViewById( rg.getCheckedRadioButtonId())) );
+                    int usr = QuizzFragment.this.getUSR();
+                    int rep = ((Quizz)getActivity()).getBDQ().getReponse( id );
+                    ((Quizz)getActivity()).getBDQ().updateData( String.valueOf( id ), rep, usr );
+                    Toast.makeText(getActivity().getBaseContext(),String.valueOf( rep ),Toast.LENGTH_SHORT).show();
+                    btnValider.setEnabled( true );
+
+                }
+            } );
         }
-
-        page = getActivity().findViewById(R.id.container);
-
-        int value = rg.indexOfChild( v.findViewById( rg.getCheckedRadioButtonId()));
-
-        btnValider = v.findViewById(R.id.valider);
-        btnValider.setOnClickListener(new QuestionListener( this.getNumero(), value ));
-
 
         return v;
     }
 
-    public int getNumero(){
+    public int getID(){
         return this.id;
     }
-
-
-    public class QuestionListener implements View.OnClickListener {
-        private int id;
-        private int usr;
-
-        public QuestionListener(int id, int usr){
-            this.id = id;
-            this.usr = usr;
-        }
-
-        public void onClick(View v) {
-            page.setCurrentItem(this.id+1);
-            //bdq.insertResponse( this.id, this.usr);
-            //String t = String.valueOf( bdq.getReponseUtilisateur( this.id ) );
-            //Toast.makeText(v.getContext(), t , Toast.LENGTH_LONG).show();
-        }
-
+    public int getUSR(){
+        return this.usr;
     }
+    public void setUSR(int usr){ this.usr = usr +1;}
+
 }
