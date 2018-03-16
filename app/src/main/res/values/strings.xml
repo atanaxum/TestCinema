@@ -1,32 +1,57 @@
 <resources>
-    <string name="app_name">TestCinema</string>
+    <string name="app_name">Super Appli</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
-    <string name="question1">What?</string>
+    <string name="question1">"Come on Frank! You know I love surprises - that's a fact! I'm always willing to make exceptions!</string>
     <string name="question1_rep1">fafza</string>
     <string name="question1_rep2">sqfeq</string>
     <string name="question1_rep3">qzfzqf</string>
 
-    <string name="question2">Who?</string>
+    <string name="question2">C’est notre RAIS a nous, René COTI ! Un grand homme, il marquera l’histoire.</string>
     <string name="question2_rep1">zdaf</string>
     <string name="question2_rep2">asdsaf</string>
     <string name="question2_rep3">azdad</string>
 
-    <string name="question3">Which?</string>
-    <string name="question3_rep1">zdaf</string>
-    <string name="question3_rep2">asdsaf</string>
-    <string name="question3_rep3">azdad</string>
+    <string name="question3">Franchement, ma chère, c’est le cadet de mes soucis !</string>
+    <string name="question3_rep1">Moulin Rouge!</string>
+    <string name="question3_rep2">Autant Emporte le Vent</string>
+    <string name="question3_rep3">Titanic</string>
 
-    <string name="question4">How?</string>
+    <string name="question4">Je suis un casseur. Je casse les prix. Des prix aussi bas, c’est criminel!</string>
     <string name="question4_rep1">zdaf</string>
     <string name="question4_rep2">asdsaf</string>
     <string name="question4_rep3">azdad</string>
 
-    <string name="question5">Why?</string>
+    <string name="question5">Elle est morte de vieillesse... mais jeune.</string>
     <string name="question5_rep1">zdaf</string>
     <string name="question5_rep2">asdsaf</string>
     <string name="question5_rep3">azdad</string>
+
+    <string name="question6">La vie c’est comme une boîte de chocolats, on ne sait jamais sur quoi on va tomber. </string>
+    <string name="question6_rep1">zdaf</string>
+    <string name="question6_rep2">asdsaf</string>
+    <string name="question6_rep3">azdad</string>
+
+    <string name="question7">Mieux vaut-il vivre comme un monstre ou mourir en homme bien ?</string>
+    <string name="question7_rep1">zdaf</string>
+    <string name="question7_rep2">asdsaf</string>
+    <string name="question7_rep3">azdad</string>
+
+    <string name="question8">Maintenant, je vais me coucher ! Avant que l’un de vous ait une brillante idée pour nous faire tuer. Ou pire, nous faire expulser!</string>
+    <string name="question8_rep1">zdaf</string>
+    <string name="question8_rep2">asdsaf</string>
+    <string name="question8_rep3">azdad</string>
+
+    <string name="question9">Elle est morte de vieillesse... mais jeune.</string>
+    <string name="question9_rep1">zdaf</string>
+    <string name="question9_rep2">asdsaf</string>
+    <string name="question9_rep3">azdad</string>
+
+    <string name="question10">Elle est morte de vieillesse... mais jeune.</string>
+    <string name="question10_rep1">zdaf</string>
+    <string name="question10_rep2">asdsaf</string>
+    <string name="question10_rep3">azdad</string>
 </resources>
