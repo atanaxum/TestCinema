@@ -2,44 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
+    android:gravity="center_vertical|center"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:gravity="center_horizontal"
         android:text="TextView1"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="bold|italic" />
 
     <RadioGroup
+        android:id="@+id/rg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:id="@+id/rg">
+        android:layout_margin="50dp"
+        android:gravity="center_horizontal">
 
         <RadioButton
             android:id="@+id/reponse1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="RadioButton"
             android:textAlignment="viewStart" />
 
         <RadioButton
             android:id="@+id/reponse2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="RadioButton" />
+            android:gravity="center"
+            android:text="RadioButton"
+            android:textAlignment="viewStart" />
 
         <RadioButton
             android:id="@+id/reponse3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="RadioButton" />
+            android:gravity="center"
+            android:text="RadioButton"
+            android:textAlignment="viewStart" />
     </RadioGroup>
 
     <Button
