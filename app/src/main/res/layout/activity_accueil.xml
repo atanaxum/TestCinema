@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.autumn.testcinema.Accueil"
+    android:orientation="vertical"
+    android:background="@drawable/background">
+
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:text="@string/titre"
+            android:textColor="@color/colorLighterOrange"
+            android:textSize="60sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
+            android:text="@string/sous_titre"
+            android:textAlignment="center"
+            android:textColor="@color/colorLighterOrange"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/l2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="50dp">
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/colorLightOrange"
+            android:contentDescription="Saisissez votre nom"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Saisissez votre nom"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorLighterOrange"
+            android:textColorHint="@color/colorLighterOrange"
+            android:textSize="18sp" />
+
+        <Button
+
+            android:id="@+id/buttonsub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/button_style"
+            android:text="@string/btn_launcher" />
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
