@@ -56,7 +56,7 @@
             android:inputType="textPersonName"
             android:textColor="@color/colorLighterOrange"
             android:textColorHint="@color/colorLighterOrange"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <Button
 

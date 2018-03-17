@@ -12,24 +12,27 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class Accueil extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "Accueil";
-    private Button lancer;
+    private EditText prenom;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
+        prenom = findViewById(R.id.editText);                               //Champs de saisi où l'utilisateur saisiras son prenom
 
-
-        lancer = findViewById(R.id.buttonsub);                              //Bouton pour lancer l'application
-        lancer.setEnabled( false );                                         //Desactivation du bouton (tant que rien n'a été saisis)
+        Button lancer = findViewById(R.id.buttonsub);                       //Bouton pour lancer l'application
         lancer.setOnClickListener( new View.OnClickListener() {             //Envoye du contenu du editText à l'Activité principale
             @Override
             public void onClick(View view) {
-                Accueil.this.sendMessage( view );
+                if(prenom.getText().toString().isEmpty())                  //Verifie que des informations furent saisies
+                    Toast.makeText( view.getContext(), "Le champs de saisi est vide", Toast.LENGTH_SHORT );//NE MARCHE PAS A CORRIGER
+                else
+                    Accueil.this.sendMessage( view );
             }
         } );
 
@@ -51,23 +54,6 @@ public class Accueil extends AppCompatActivity {
      */
     public void sendMessage(View view) {
         Intent intent = new Intent(this, Main.class);
-        EditText prenom = findViewById(R.id.editText);                      //Champs de saisi où l'utilisateur saisiras son prenom
-        prenom.addTextChangedListener(new TextWatcher() {                   //Listener activant le bouton "lancer" lorsque quelquechose fut rentré dans le champs de saisi
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().trim().length()==0){
-                    lancer.setEnabled(false);
-                } else {
-                    lancer.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {}
-        });
 
         //envoye du message
         String message = prenom.getText().toString();
