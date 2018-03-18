@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
@@ -41,7 +42,7 @@ public class Main extends AppCompatActivity {
 
                 //large.setText("Vous avez terminé le test!");
                 String result = data.getStringExtra("result");
-                if(!result.contains( "!" )){
+                if(!result.equals( "Vous avez tout juste!" )){
                     String[] separated = result.split(";");
 
                     String affichage = "Vous vous etes trompés:\n";
@@ -55,5 +56,11 @@ public class Main extends AppCompatActivity {
                 large.setText("ERROR");
 
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate( R.menu.menu_main, menu );
+        return true;
     }
 }
