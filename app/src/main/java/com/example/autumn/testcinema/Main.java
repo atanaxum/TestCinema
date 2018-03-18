@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class Main extends AppCompatActivity {
-    TextView textView;
+    TextView large;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +20,8 @@ public class Main extends AppCompatActivity {
         Toolbar toolbar =  findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
 
-        textView = findViewById(R.id.large_text);
-        textView.setText(R.string.welcome);
+        large = findViewById(R.id.large_text);
+        large.setText(R.string.welcome);
 
         //auto generated
         FloatingActionButton fab = (FloatingActionButton) findViewById( R.id.fab );
@@ -38,12 +38,22 @@ public class Main extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             if(resultCode == Activity.RESULT_OK){
+
+                //large.setText("Vous avez terminé le test!");
                 String result = data.getStringExtra("result");
-                textView.setText(result);
+                if(!result.contains( "!" )){
+                    String[] separated = result.split(";");
+
+                    String affichage = "Vous vous etes trompés:\n";
+                    for (int i=0; i<separated.length;i++)
+                        affichage+=separated[i]+"\n";
+                    large.setText( affichage );
+                }else
+                    large.setText( result );
             }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                textView.setText("ERROR");
-            }
+            if (resultCode == Activity.RESULT_CANCELED)
+                large.setText("ERROR");
+
         }
     }
 }

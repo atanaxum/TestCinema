@@ -93,7 +93,7 @@ public class Quizz extends AppCompatActivity {
         for(int i=1; i<=10;i++){
             if(this.getBDQ().getReponse( i ) != this.getBDQ().getReponseUtilisateur( i )){
                 int resText =getResources().getIdentifier("question"+ i +"_rep"+this.getBDQ().getReponse( i ),"string", this.getPackageName());
-                result+="Question "+i+": "+getString( resText )+"\n";
+                result+=i+": "+getString( resText )+";";
             }else{
                 nbBonneRep++;
             }
