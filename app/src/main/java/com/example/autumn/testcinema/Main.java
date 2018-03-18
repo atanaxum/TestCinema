@@ -1,5 +1,6 @@
 package com.example.autumn.testcinema;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,7 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class Main extends AppCompatActivity {
-    private static final int CONNECTED_ACTIVITY_ID = 1;                    //ID de l'activité (Quizz), necessaire pour le retour des informations suite au quizz
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,13 +20,8 @@ public class Main extends AppCompatActivity {
         Toolbar toolbar =  findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
 
-        // Recuperation du Intent qui à declenché cette activité & recuperation du string saisi par l'utilisateur
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(Accueil.EXTRA_MESSAGE);
-
-        // test de recuparation
-        TextView textView = findViewById(R.id.large_text);
-        textView.setText(message);
+        textView = findViewById(R.id.large_text);
+        textView.setText(R.string.welcome);
 
         //auto generated
         FloatingActionButton fab = (FloatingActionButton) findViewById( R.id.fab );
@@ -33,11 +29,21 @@ public class Main extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent startSecondActivityIntent = new Intent(Main.this, Quizz.class);
-                startActivityForResult(startSecondActivityIntent, CONNECTED_ACTIVITY_ID);
+                startActivityForResult(startSecondActivityIntent, 1);
             }
         } );
+    }
 
-
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                String result = data.getStringExtra("result");
+                textView.setText(result);
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                textView.setText("ERROR");
+            }
+        }
     }
 }

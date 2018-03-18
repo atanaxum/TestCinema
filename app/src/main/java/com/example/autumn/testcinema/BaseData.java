@@ -120,6 +120,30 @@ public class BaseData extends SQLiteOpenHelper {
     }
 
     /**
+     * Renvoie la reponse de l'utilisateur à une question donnée
+     * @param id est l'ID de la question
+     * @return Numero correspondant à la reponse donnée par l'usager
+     */
+    public int getReponseUtilisateur(int id) {
+        Log.d(TAG, "GET REPONSE USER Start");
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.query(TABLE_NAME,
+                new String[]{COL_ID,COL_USER},
+                COL_ID + "=?",
+                new String[]{String.valueOf(id)},
+                null, null, null, null);    //Requete recuperant la reponse juste à une question
+        Log.d(TAG, "GET REPONSE USER Cursor créé avec succes");
+
+        if (cursor != null) cursor.moveToFirst();
+
+        int reponse = Integer.parseInt(cursor.getString(1));
+        cursor.close();
+
+        return reponse;
+    }
+
+    /**
      * Renvoie le nombre de questions enregistrés dans la BD
      * @return ID maximum enregistré
      */

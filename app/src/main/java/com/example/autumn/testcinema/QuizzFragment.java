@@ -28,8 +28,7 @@ public class QuizzFragment extends Fragment{
     private int id;
     private int usr;
     private Button btnValider;
-
-    ViewPager page;
+    private ViewPager page;
 
     public QuizzFragment(int id) {
         super();
@@ -72,12 +71,11 @@ public class QuizzFragment extends Fragment{
                     if( ((Quizz)getActivity()).getBDQ().getNbReponse() != 10 ){
                         Log.d(TAG,"NB QUESTIONS REPONDUES != NB REPONSES DONNEES");
                         Toast.makeText(QuizzFragment.this.getContext(),"Vous n'avez pas repondu à toutes les questions",Toast.LENGTH_LONG).show();
-                    }else{
-                        //TRAITEMENT
-                    }
-                }else{
+                    }else
+                        ((Quizz)getActivity()).sendResultat();          //Resultat du test envoyé à la page principale
+                }else
                     page.setCurrentItem(id);                        //On passe à la question suivante
-                }
+
             }
         } );
         btnValider.setEnabled( false );

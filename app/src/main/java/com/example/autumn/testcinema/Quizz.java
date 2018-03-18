@@ -1,5 +1,7 @@
 package com.example.autumn.testcinema;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 
@@ -42,26 +44,18 @@ public class Quizz extends AppCompatActivity {
     public void inintBDQ(){
         if(this.getBDQ().getMax()==0){                                  //SI la BD n'existe pas: la construire
             this.addData( 1,3,9 );
-            this.addData( 2,1,9 );
+            this.addData( 2,2,9 );
             this.addData( 3,2,9 );
-            this.addData( 4,2,9 );
-            this.addData( 5,2,9 );
+            this.addData( 4,1,9 );
+            this.addData( 5,3,9 );
             this.addData( 6,2,9 );
-            this.addData( 7,2,9 );
-            this.addData( 8,2,9 );
-            this.addData( 9,2,9 );
+            this.addData( 7,1,9 );
+            this.addData( 8,3,9 );
+            this.addData( 9,1,9 );
             this.addData( 10,2,9 );
         }else{                                                         //SINON on RESET la BD
-            this.updateData( 1,9 );
-            this.updateData( 2,9 );
-            this.updateData( 3,9 );
-            this.updateData( 4,9 );
-            this.updateData( 5,9 );
-            this.updateData( 6,9 );
-            this.updateData( 7,9 );
-            this.updateData( 8,9 );
-            this.updateData( 9,9 );
-            this.updateData( 10,9 );
+            for(int i=1; i<=10;i++)
+                this.updateData( i,9 );
         }
     }
 
@@ -89,5 +83,25 @@ public class Quizz extends AppCompatActivity {
             Log.d( TAG,"Data Insert" );
         else
             Log.d( TAG,"Data not Inserted" );
+    }
+
+
+    public void sendResultat (){
+        Intent returnIntent = new Intent();
+        String result = "";
+        int nbBonneRep = 0;
+        for(int i=1; i<=10;i++){
+            if(this.getBDQ().getReponse( i ) != this.getBDQ().getReponseUtilisateur( i )){
+                int resText =getResources().getIdentifier("question"+ i +"_rep"+this.getBDQ().getReponse( i ),"string", this.getPackageName());
+                result+="Question "+i+": "+getString( resText )+"\n";
+            }else{
+                nbBonneRep++;
+            }
+        }
+        if(nbBonneRep==10)
+            result = "Vous avez tout juste!";
+        returnIntent.putExtra("result",result);
+        setResult( Activity.RESULT_OK,returnIntent);
+        finish();
     }
 }
