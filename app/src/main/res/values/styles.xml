@@ -9,13 +9,14 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <!-- Theme pour desactiver la bare de tache en haut de l'ecran -->
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
+    <!-- Themes pour le layout Main -->
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

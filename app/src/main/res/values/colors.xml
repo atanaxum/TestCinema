@@ -3,10 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorPrimaryDarkGreen">#273833</color>
+    <color name="colorPrimaryDarkBlue">#252439</color>
     <color name="colorBlack">#000</color>
     <color name="colorLighterOrange">#fdf2df</color>
     <color name="colorLightOrange">#ebd6ab</color>
     <color name="colorAlmostWhite">#f5f2ed</color>
-    FFFAF7F2
+    <color name="colorOrange">#ce6e00</color>
 </resources>

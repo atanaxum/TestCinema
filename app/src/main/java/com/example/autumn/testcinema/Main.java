@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,6 +12,8 @@ import android.widget.TextView;
 
 public class Main extends AppCompatActivity {
     TextView large;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class Main extends AppCompatActivity {
             public void onClick(View view) {
                 Intent startSecondActivityIntent = new Intent(Main.this, Quizz.class);
                 startActivityForResult(startSecondActivityIntent, 1);
+                overridePendingTransition( R.anim.slide_horizontal_in, R.anim.slide_horizontal_out );
             }
         } );
     }
