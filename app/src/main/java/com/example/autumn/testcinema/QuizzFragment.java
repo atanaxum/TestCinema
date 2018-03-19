@@ -9,9 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -44,11 +45,19 @@ public class QuizzFragment extends Fragment{
         this.setUSR( 8 );                                               //Une reponse utilisateur fixée a 9 (car+1 dans le setUSR()) correspond à "l'utilisateur n'a pas repondu
 
         int resQuest = getResources().getIdentifier(
-                "question"+ this.getID(),
+                "question"+ this.getNumero(),
                 "string",
                 v.getContext().getPackageName());                       //Recuperation de la question dans les Ressources
         TextView quest = v.findViewById(R.id.question);                 //Création du champ Text contenant la question
         quest.setText(getString( resQuest ));
+
+
+        //Ajout d'une animation pour la premier question
+        if(this.getNumero()==1){
+            Animation uptodown = AnimationUtils.loadAnimation(((Quizz)getActivity()),R.anim.popup_vers_bas );
+            quest.setAnimation(uptodown);
+        }
+
 
         //RadioGroupe contenant les reponses possibles
         final RadioGroup rg = v.findViewById( R.id.rg );
@@ -61,12 +70,12 @@ public class QuizzFragment extends Fragment{
         btnValider.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG,"QUESTION REPONDUE = "+QuizzFragment.this.getID());
+                Log.d(TAG,"QUESTION REPONDUE = "+QuizzFragment.this.getNumero());
                 sound_button.start();
-                int id = QuizzFragment.this.getID();
+                int id = QuizzFragment.this.getNumero();
                 int usr = QuizzFragment.this.getUSR();
                 ((Quizz)getActivity()).updateData( id,usr );
-                if(QuizzFragment.this.getID() == 10){
+                if(QuizzFragment.this.getNumero() == 10){
                     Log.d(TAG,"DERNIERE QUESTION repondue");
                     if( ((Quizz)getActivity()).getBDQ().getNbReponse() != 10 ){
                         Log.d(TAG,"NB QUESTIONS REPONDUES != NB REPONSES DONNEES");
@@ -81,14 +90,14 @@ public class QuizzFragment extends Fragment{
         btnValider.setEnabled( false );
 
         for(int i = 1; i<=3; i++){
-            int resText =getResources().getIdentifier("question"+ this.getID()+"_rep"+i,"string", v.getContext().getPackageName());
+            int resText =getResources().getIdentifier("question"+ this.getNumero()+"_rep"+i,"string", v.getContext().getPackageName());
             int res =getResources().getIdentifier("reponse"+i,"id", v.getContext().getPackageName());
             RadioButton btnRep = v.findViewById( res );
             btnRep.setText( getString( resText ) );
             btnRep.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int id = QuizzFragment.this.getID();
+                    int id = QuizzFragment.this.getNumero();
                     QuizzFragment.this.setUSR( rg.indexOfChild( view.findViewById( rg.getCheckedRadioButtonId())) );
                     int usr = QuizzFragment.this.getUSR();
                     int rep = ((Quizz)getActivity()).getBDQ().getReponse( id );
@@ -104,7 +113,7 @@ public class QuizzFragment extends Fragment{
      * Renvoye l'id de la question actuelle
      * @return l'ID
      */
-    public int getID(){
+    public int getNumero(){
         return this.id;
     }
 

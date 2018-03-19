@@ -4,20 +4,13 @@ package com.example.autumn.testcinema;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 public class Accueil extends AppCompatActivity {
-    public static final String EXTRA_MESSAGE = "Accueil";
-    private EditText prenom;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +21,9 @@ public class Accueil extends AppCompatActivity {
         lancer.setOnClickListener( new View.OnClickListener() {             //Envoye du contenu du editText à l'Activité principale
             @Override
             public void onClick(View view) {
+
                 Accueil.this.startActivity(new Intent( Accueil.this, Main.class ));
+                overridePendingTransition(R.anim.slide_vertical_in, R.anim.slide_vertical_out );
             }
         } );
 
