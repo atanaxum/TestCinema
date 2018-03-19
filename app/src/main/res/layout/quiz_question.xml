@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAlmostWhite"
+    android:background="@color/colorAutumn0"
     android:gravity="center_vertical|center"
     android:orientation="vertical">
 
@@ -22,14 +22,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="50dp"
+        android:button = "@drawable/radio_button_clair"
         android:gravity="center_horizontal">
 
         <RadioButton
             android:id="@+id/reponse1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:paddingLeft="10dp"
             android:text="RadioButton"
             android:textAlignment="viewStart"
             tools:ignore="RtlCompat" />
@@ -38,8 +41,10 @@
             android:id="@+id/reponse2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:paddingLeft="10dp"
             android:text="RadioButton"
             android:textAlignment="viewStart"
             tools:ignore="RtlCompat" />
@@ -48,8 +53,10 @@
             android:id="@+id/reponse3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:paddingLeft="10dp"
             android:text="RadioButton"
             android:textAlignment="viewStart"
             tools:ignore="RtlCompat" />
@@ -60,7 +67,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/button_quizz_style"
         android:text="@string/btn_valider" />
 
 </LinearLayout>

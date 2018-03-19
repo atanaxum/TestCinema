@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Basic -->
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Add -->
     <color name="colorPrimaryDarkBlue">#252439</color>
     <color name="colorBlack">#000</color>
-    <color name="colorLighterOrange">#fdf2df</color>
-    <color name="colorLightOrange">#ebd6ab</color>
-    <color name="colorAlmostWhite">#f5f2ed</color>
-    <color name="colorOrange">#ce6e00</color>
+
+    <!-- Autumn -->
+    <color name="colorAutumn0">#FFE0B2</color>
+    <color name="colorAutumn1">#FFCC80</color>
+    <color name="colorAutumn2">#FFB74D</color>
+    <color name="colorAutumn3">#f9b508</color>
+    <color name="colorAutumn4">#FFA726</color>
+    <color name="colorAutumn5">#FF9800</color>
+    <color name="colorAutumn6">#FB8C00</color>
+    <color name="colorAutumn7">#F57C00</color>
+    <color name="colorAutumn8">#EF6C00</color>
+    <color name="colorAutumn9">#E65100</color>
+    <color name="colorAutumn10">#510f24</color>
 </resources>

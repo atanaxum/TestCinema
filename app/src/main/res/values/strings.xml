@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Super Appli</string>
-    <string name="titre">Test</string>
-    <string name="sous_titre">Together, together, together everybody!</string>
+    <string name="app_name">CinéQuizz</string>
+    <string name="titre">CinéQuizz</string>
+    <string name="sous_titre">Trouverez vous d\'où viennent ces répliques</string>
     <string name="btn_valider">Suivant</string>
     <string name="btn_launcher">C\'est parti!</string>
     <string name="action_settings">Settings</string>

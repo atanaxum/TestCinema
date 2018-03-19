@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAlmostWhite"
+    android:background="@color/colorAutumn0"
     android:gravity="center_vertical">
 
     <TextView
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/button_quizz_style"
+            android:background="@drawable/button_style_1"
             android:text="@string/btn_valider" />
     </LinearLayout>
 
