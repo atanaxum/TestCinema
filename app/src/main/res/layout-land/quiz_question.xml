@@ -35,7 +35,9 @@
                 android:id="@+id/reponse1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
+                android:paddingLeft="10dp"
                 android:text="RadioButton"
                 android:textAlignment="viewStart" />
 
@@ -43,14 +45,18 @@
                 android:id="@+id/reponse2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
+                android:paddingLeft="10dp"
                 android:text="RadioButton" />
 
             <RadioButton
                 android:id="@+id/reponse3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
+                android:paddingLeft="10dp"
                 android:text="RadioButton" />
 
         </RadioGroup>
