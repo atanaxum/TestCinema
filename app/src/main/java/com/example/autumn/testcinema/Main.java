@@ -1,13 +1,19 @@
 package com.example.autumn.testcinema;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Main extends AppCompatActivity {
@@ -48,15 +54,15 @@ public class Main extends AppCompatActivity {
                     String[] separated = result.split(";");
 
                     String affichage = "Vous vous etes trompés:\n";
-                    for (int i=0; i<separated.length;i++)
+                    for (int i=0; i<separated.length;i++){
                         affichage+=separated[i]+"\n";
+                    }
                     large.setText( affichage );
                 }else
                     large.setText( result );
             }
             if (resultCode == Activity.RESULT_CANCELED)
                 large.setText("ERROR");
-
         }
     }
 
@@ -65,4 +71,19 @@ public class Main extends AppCompatActivity {
         getMenuInflater().inflate( R.menu.menu_main, menu );
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_settings:
+                Intent intent = new Intent(this, Setting.class);
+                this.startActivity(intent);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
+
 }

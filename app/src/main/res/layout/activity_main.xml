@@ -14,14 +14,14 @@
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay"
-        android:background="@color/colorOrange">
+        android:background="@color/colorAutumn4">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/colorLightOrange"
+            app:contentScrim="@color/colorAutumn10"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
@@ -44,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@color/colorAutumn10"
         app:layout_anchor="@+id/app_bar"
         app:layout_anchorGravity="bottom|center"
         app:srcCompat="@android:drawable/ic_media_play" />

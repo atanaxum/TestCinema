@@ -1,10 +1,19 @@
 <resources>
-    <string name="app_name">Super Appli</string>
-    <string name="titre">Test</string>
-    <string name="sous_titre">Together, together, together everybody!</string>
-    <string name="btn_valider">Suivant</string>
+    <!-- Accueil -->
+    <string name="app_name">CinéQuizz</string>
+    <string name="titre">CinéQuizz</string>
+    <string name="sous_titre">Trouverez vous d\'où viennent ces répliques</string>
     <string name="btn_launcher">C\'est parti!</string>
+    <!-- Main -->
+    <string name="title_activity_main">Lancez le Test</string>
+    <string name="welcome">Commencez le quizz en appuyant sur le bouton PLAY</string>
     <string name="action_settings">Settings</string>
+    <!-- Quizz -->
+    <string name="btn_valider">Suivant</string>
+    <!-- Setting -->
+    <string name="changeLangue">Changez la langue</string>
+    <string name="about">C\'est nous</string>
+
 
     <string name="question1">C’est notre RAIS a nous, René COTI ! Un grand homme, il marquera l’histoire!</string>
     <string name="question1_rep1">L’auberge rouge</string>
@@ -55,8 +64,18 @@
     <string name="question10_rep1">Dallas Buyers Club</string>
     <string name="question10_rep2">5eme Elément</string>
     <string name="question10_rep3">Hightlander</string>
+    <string name="title_activity_setting">Sign in</string>
 
-
-    <string name="title_activity_main">Main</string>
-    <string name="welcome">Commencez le quizz en appuyant sur le bouton PLAY</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
 </resources>

@@ -103,5 +103,6 @@ public class Quizz extends AppCompatActivity {
         returnIntent.putExtra("result",result);
         setResult( Activity.RESULT_OK,returnIntent);
         finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out );
     }
 }

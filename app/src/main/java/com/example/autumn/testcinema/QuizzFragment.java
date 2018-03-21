@@ -41,6 +41,7 @@ public class QuizzFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         setRetainInstance( true );                                      //Necessaire pour faire fonctionner l'activité en landscape
         View v =inflater.inflate(R.layout.quiz_question,container,false);
+
         page = getActivity().findViewById(R.id.container);
         this.setUSR( 8 );                                               //Une reponse utilisateur fixée a 9 (car+1 dans le setUSR()) correspond à "l'utilisateur n'a pas repondu
 
@@ -82,8 +83,9 @@ public class QuizzFragment extends Fragment{
                         Toast.makeText(QuizzFragment.this.getContext(),"Vous n'avez pas repondu à toutes les questions",Toast.LENGTH_LONG).show();
                     }else
                         ((Quizz)getActivity()).sendResultat();          //Resultat du test envoyé à la page principale
-                }else
+                }else{
                     page.setCurrentItem(id);                        //On passe à la question suivante
+                }
 
             }
         } );
@@ -103,9 +105,38 @@ public class QuizzFragment extends Fragment{
                     int rep = ((Quizz)getActivity()).getBDQ().getReponse( id );
                     ((Quizz)getActivity()).getBDQ().updateData( String.valueOf( id ), rep, usr );
                     btnValider.setEnabled( true );
+
                 }
             } );
+
+            //Esthetique
+            if(QuizzFragment.this.getNumero()<=5){
+                btnRep.setButtonDrawable( getResources().getDrawable( R.drawable.radio_button_sombre ) );
+                btnRep.setTextColor( getResources().getColor( R.color.colorAutumn10 ) );
+            }else{
+                btnRep.setButtonDrawable( getResources().getDrawable( R.drawable.radio_button_clair ) );
+                btnRep.setTextColor( getResources().getColor( R.color.colorAutumn0 ) );
+            }
         }
+
+
+        //Esthetique
+        int resColor = getResources().getIdentifier("colorAutumn"+ this.getNumero(),"color", v.getContext().getPackageName());
+        v.setBackgroundColor( getResources().getColor( resColor ) );
+        int resBtn = getResources().getIdentifier("button_style_"+ this.getNumero(),"drawable", v.getContext().getPackageName());
+        btnValider.setBackground( getResources().getDrawable( resBtn ) );
+        if(this.getNumero()<=5){
+            btnValider.setTextColor( getResources().getColor( R.color.colorAutumn10 ) );
+            quest.setTextColor( getResources().getColor( R.color.colorAutumn10 ) );
+        }else{
+            btnValider.setTextColor( getResources().getColor( R.color.colorAutumn0 ) );
+            quest.setTextColor( getResources().getColor( R.color.colorAutumn0 ) );
+        }
+
+
+
+
+
         return v;
     }
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.autumn.testcinema.Accueil"
     android:orientation="vertical"
-    android:background="@color/colorOrange">
+    android:background="@color/colorAutumn4">
 
     <LinearLayout
         android:id="@+id/l1"
@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="100dp"
             android:text="@string/titre"
-            android:textColor="@color/colorLighterOrange"
+            android:textColor="@color/colorAutumn0"
             android:textSize="60sp"
             android:textStyle="bold" />
 
@@ -31,7 +31,7 @@
             android:layout_margin="30dp"
             android:text="@string/sous_titre"
             android:textAlignment="center"
-            android:textColor="@color/colorLighterOrange"
+            android:textColor="@color/colorAutumn0"
             android:textSize="24sp" />
     </LinearLayout>
 
@@ -49,9 +49,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/button_style"
+            android:background="@drawable/button_style_accueil"
             android:text="@string/btn_launcher"
-            android:textColor="@color/colorLightOrange"/>
+            android:textColor="@color/colorAutumn0"/>
     </LinearLayout>
 
 
