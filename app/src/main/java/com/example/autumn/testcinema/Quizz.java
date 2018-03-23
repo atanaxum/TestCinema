@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.OrientationEventListener;
 import android.widget.Toast;
 
 public class Quizz extends AppCompatActivity {
@@ -23,26 +24,35 @@ public class Quizz extends AppCompatActivity {
         setContentView(R.layout.activity_quizz);
         Log.d( TAG,"Allumé" );
 
-
+        //Creation de la Base de Data
         bdq = new BaseData( this );
         this.inintBDQ();
         Log.d( TAG,"BD Crée" );
 
-        sectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+        //Création des Activitées contenant les questions
+        sectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager() );
         viewPager = findViewById(R.id.container);
         afficherFragment(viewPager);
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
     }
 
+    /**
+     * Renvoie la BD (permet d'y faire appeldans d'autres classes)
+     * @return la BD
+     */
     public BaseData getBDQ(){
         return bdq;
     }
 
+    /**
+     * Initialise la BD, la crée si n'existe pas, la reboot si deja initialisée
+     */
     public void inintBDQ(){
-        if(this.getBDQ().getMax()==0){                                  //SI la BD n'existe pas: la construire
+        //SI la BD n'existe pas: la construire
+        if(this.getBDQ().getMax()==0){
+            //Le 9 correspond a la reponse de l'utilisateur. La valeur 9 correspond au fait que l'utilisateur n'a pas encore repondu
             this.addData( 1,3,9 );
             this.addData( 2,2,9 );
             this.addData( 3,2,9 );
@@ -53,13 +63,17 @@ public class Quizz extends AppCompatActivity {
             this.addData( 8,3,9 );
             this.addData( 9,1,9 );
             this.addData( 10,2,9 );
-        }else{                                                         //SINON on RESET la BD
+        }else{
+            //SINON on RESET la BD
             for(int i=1; i<=10;i++)
                 this.updateData( i,9 );
         }
     }
 
-
+    /**
+     * Création des Activités contenant les Questions
+     * @param viewPager la view correspondant au layout des questions
+     */
     private void afficherFragment(ViewPager viewPager){
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         for(int i = 1; i<=10; i++)
@@ -68,7 +82,11 @@ public class Quizz extends AppCompatActivity {
 
     }
 
-
+    /**
+     * Mettre à jour la BD
+     * @param id le numero de la question
+     * @param rep la reponse correcte a la question
+     */
     public void updateData(int id, int rep) {
         boolean isUpdate = bdq.updateData(String.valueOf( id ), bdq.getReponse( id ), rep);
         if(isUpdate == true)
@@ -77,6 +95,12 @@ public class Quizz extends AppCompatActivity {
             Log.d( TAG,"Data not Updated" );
     }
 
+    /**
+     * Ajouter une nouvelle donnée (utilisé pour créer la BD)
+     * @param id le numero de la question
+     * @param rep la reponse correcte a la question
+     * @param usr la reponse de l'utilisateur a la question
+     */
     public  void addData(int id, int rep, int usr) {
         boolean isInserted = bdq.insertData(id, rep, usr);
         if(isInserted == true)
@@ -85,7 +109,9 @@ public class Quizz extends AppCompatActivity {
             Log.d( TAG,"Data not Inserted" );
     }
 
-
+    /**
+     * Envoie le resultat du Quizz à l'activité Main
+     */
     public void sendResultat (){
         Intent returnIntent = new Intent();
         String result = "";
@@ -98,11 +124,13 @@ public class Quizz extends AppCompatActivity {
                 nbBonneRep++;
             }
         }
-        if(nbBonneRep==10)
+        if(nbBonneRep==10){
             result = "Vous avez tout juste!";
+        }
         returnIntent.putExtra("result",result);
         setResult( Activity.RESULT_OK,returnIntent);
         finish();
+        //Animation
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out );
     }
 }

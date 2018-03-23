@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -39,19 +41,19 @@ public class QuizzFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        setRetainInstance( true );                                      //Necessaire pour faire fonctionner l'activité en landscape
+        //Necessaire pour faire fonctionner l'activité en landscape
+        setRetainInstance( true );
         View v =inflater.inflate(R.layout.quiz_question,container,false);
 
         page = getActivity().findViewById(R.id.container);
-        this.setUSR( 8 );                                               //Une reponse utilisateur fixée a 9 (car+1 dans le setUSR()) correspond à "l'utilisateur n'a pas repondu
+        //Une reponse utilisateur fixée a 9 (car+1 dans le setUSR()) correspond à "l'utilisateur n'a pas repondu
+        this.setUSR( 8 );
 
-        int resQuest = getResources().getIdentifier(
-                "question"+ this.getNumero(),
-                "string",
-                v.getContext().getPackageName());                       //Recuperation de la question dans les Ressources
-        TextView quest = v.findViewById(R.id.question);                 //Création du champ Text contenant la question
+        //Recuperation de la question dans les Ressources
+        int resQuest = getResources().getIdentifier("question"+ this.getNumero(),"string",v.getContext().getPackageName());
+        //Création du champ Text contenant la question
+        TextView quest = v.findViewById(R.id.question);
         quest.setText(getString( resQuest ));
-
 
         //Ajout d'une animation pour la premier question
         if(this.getNumero()==1){
@@ -59,57 +61,72 @@ public class QuizzFragment extends Fragment{
             quest.setAnimation(uptodown);
         }
 
-
         //RadioGroupe contenant les reponses possibles
         final RadioGroup rg = v.findViewById( R.id.rg );
         //Creation du son d'un boutton
         final MediaPlayer sound_button = MediaPlayer.create(v.getContext(), R.raw.button );
 
-        //this.setUSR( rg.indexOfChild( v.findViewById( rg.getCheckedRadioButtonId())) );
-
+        //Création du bouton qui confirme la reponse donnée par l'utilisateur
         btnValider = v.findViewById(R.id.valider);
         btnValider.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"QUESTION REPONDUE = "+QuizzFragment.this.getNumero());
+                //Joue le son du bouton
                 sound_button.start();
+
+                //Met à jour la BD
                 int id = QuizzFragment.this.getNumero();
                 int usr = QuizzFragment.this.getUSR();
                 ((Quizz)getActivity()).updateData( id,usr );
+
+                //Si c'est la dernier question
                 if(QuizzFragment.this.getNumero() == 10){
+                    btnValider.setText( "Terminer" );
                     Log.d(TAG,"DERNIERE QUESTION repondue");
+
+                    //Si l'utilisateur à passé des questions
                     if( ((Quizz)getActivity()).getBDQ().getNbReponse() != 10 ){
                         Log.d(TAG,"NB QUESTIONS REPONDUES != NB REPONSES DONNEES");
                         Toast.makeText(QuizzFragment.this.getContext(),"Vous n'avez pas repondu à toutes les questions",Toast.LENGTH_LONG).show();
-                    }else
-                        ((Quizz)getActivity()).sendResultat();          //Resultat du test envoyé à la page principale
+                    }else {
+                        //Resultat du test envoyé à la page principale
+                        ((Quizz) getActivity()).sendResultat();
+                    }
                 }else{
-                    page.setCurrentItem(id);                        //On passe à la question suivante
+                    //Si c'est pas la derniere question on passe à la question suivante
+                    page.setCurrentItem(id);
                 }
 
             }
         } );
         btnValider.setEnabled( false );
 
+        //Gestion des RadioButton
         for(int i = 1; i<=3; i++){
+            //Recuperation du text
             int resText =getResources().getIdentifier("question"+ this.getNumero()+"_rep"+i,"string", v.getContext().getPackageName());
+            //Recuperation de l'id
             int res =getResources().getIdentifier("reponse"+i,"id", v.getContext().getPackageName());
             RadioButton btnRep = v.findViewById( res );
             btnRep.setText( getString( resText ) );
+            //Selectionner une reponse
             btnRep.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int id = QuizzFragment.this.getNumero();
+                    //On passe la reponse de l'utilisateur en parametre
                     QuizzFragment.this.setUSR( rg.indexOfChild( view.findViewById( rg.getCheckedRadioButtonId())) );
                     int usr = QuizzFragment.this.getUSR();
                     int rep = ((Quizz)getActivity()).getBDQ().getReponse( id );
+                    //On met a jour la BD
                     ((Quizz)getActivity()).getBDQ().updateData( String.valueOf( id ), rep, usr );
+                    //On deverouille le bouton "suivant"
                     btnValider.setEnabled( true );
-
                 }
             } );
 
-            //Esthetique
+            //Esthetique des Radio Button
             if(QuizzFragment.this.getNumero()<=5){
                 btnRep.setButtonDrawable( getResources().getDrawable( R.drawable.radio_button_sombre ) );
                 btnRep.setTextColor( getResources().getColor( R.color.colorAutumn10 ) );
@@ -120,7 +137,7 @@ public class QuizzFragment extends Fragment{
         }
 
 
-        //Esthetique
+        //Esthetique des Pages (effet degradé)
         int resColor = getResources().getIdentifier("colorAutumn"+ this.getNumero(),"color", v.getContext().getPackageName());
         v.setBackgroundColor( getResources().getColor( resColor ) );
         int resBtn = getResources().getIdentifier("button_style_"+ this.getNumero(),"drawable", v.getContext().getPackageName());
@@ -132,10 +149,6 @@ public class QuizzFragment extends Fragment{
             btnValider.setTextColor( getResources().getColor( R.color.colorAutumn0 ) );
             quest.setTextColor( getResources().getColor( R.color.colorAutumn0 ) );
         }
-
-
-
-
 
         return v;
     }
@@ -164,5 +177,7 @@ public class QuizzFragment extends Fragment{
         //+1 necessaire car les numeros des radioButton = 0,1,2 alors que numero des Reponses dans la BD = 1,2,3
         this.usr = usr +1;
     }
+
+
 
 }

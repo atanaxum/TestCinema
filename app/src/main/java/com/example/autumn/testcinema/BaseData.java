@@ -104,11 +104,12 @@ public class BaseData extends SQLiteOpenHelper {
         Log.d(TAG, "GET REPONSE Start");
         SQLiteDatabase db = this.getWritableDatabase();
 
+        //Requete recuperant la reponse juste à une question
         Cursor cursor = db.query(TABLE_NAME,
                 new String[]{COL_ID,COL_REP},
                 COL_ID + "=?",
                 new String[]{String.valueOf(id)},
-                null, null, null, null);    //Requete recuperant la reponse juste à une question
+                null, null, null, null);
         Log.d(TAG, "GET REPONSE Cursor créé avec succes");
 
         if (cursor != null) cursor.moveToFirst();
@@ -128,11 +129,12 @@ public class BaseData extends SQLiteOpenHelper {
         Log.d(TAG, "GET REPONSE USER Start");
         SQLiteDatabase db = this.getWritableDatabase();
 
+        //Requete recuperant la reponse juste à une question
         Cursor cursor = db.query(TABLE_NAME,
                 new String[]{COL_ID,COL_USER},
                 COL_ID + "=?",
                 new String[]{String.valueOf(id)},
-                null, null, null, null);    //Requete recuperant la reponse juste à une question
+                null, null, null, null);
         Log.d(TAG, "GET REPONSE USER Cursor créé avec succes");
 
         if (cursor != null) cursor.moveToFirst();

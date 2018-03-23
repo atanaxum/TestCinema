@@ -15,11 +15,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Main extends AppCompatActivity {
     TextView large;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +35,10 @@ public class Main extends AppCompatActivity {
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Lancer le Test et attendre le resultat
                 Intent startSecondActivityIntent = new Intent(Main.this, Quizz.class);
                 startActivityForResult(startSecondActivityIntent, 1);
+                //Animer la transition
                 overridePendingTransition( R.anim.slide_horizontal_in, R.anim.slide_horizontal_out );
             }
         } );
@@ -47,27 +48,29 @@ public class Main extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             if(resultCode == Activity.RESULT_OK){
-
-                //large.setText("Vous avez terminé le test!");
                 String result = data.getStringExtra("result");
+                //Si l'utilisateur s'est trompé, alors....
                 if(!result.equals( "Vous avez tout juste!" )){
+                    //Les divers films sont separés par les ";"
                     String[] separated = result.split(";");
-
                     String affichage = "Vous vous etes trompés:\n";
                     for (int i=0; i<separated.length;i++){
+                        //Faire un saut de ligne apres chaque film
                         affichage+=separated[i]+"\n";
                     }
+                    //Afficher la liste d'erreurs
                     large.setText( affichage );
                 }else
                     large.setText( result );
             }
             if (resultCode == Activity.RESULT_CANCELED)
-                large.setText("ERROR");
+                large.setText("Vous avez quité le test sans le terminer");
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //Afficher le menu personnalisé
         getMenuInflater().inflate( R.menu.menu_main, menu );
         return true;
     }
@@ -75,9 +78,14 @@ public class Main extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
+            //Si l'utilisateur clique sur le btn "Settings"
             case R.id.action_settings:
                 Intent intent = new Intent(this, Setting.class);
                 this.startActivity(intent);
+                break;
+                //Si l'utilisateur clique sur le btn "Share"
+            case R.id.action_share:
+                Toast.makeText(this, "Fonction en developpement\n (Veillez attendre l'API 26)",Toast.LENGTH_LONG).show();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
