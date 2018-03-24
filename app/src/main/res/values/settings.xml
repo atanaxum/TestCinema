@@ -2,6 +2,6 @@
 <resources>
     <string-array name="settings">
         <item>@string/changerName</item>
-        <item>@string/version</item>
+        <item>@string/param_nous</item>
     </string-array>
 </resources>

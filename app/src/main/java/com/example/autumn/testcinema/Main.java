@@ -33,7 +33,7 @@ public class Main extends AppCompatActivity {
         this.inintBDQ();
 
         large = findViewById(R.id.large_text);
-        large.setText("Bonjour "+this.getBDQ().getNom( 1 )+" (Vous pouvez changer le nom dans les parametres)\n"+getString( R.string.welcome ));
+        large.setText(getString( R.string.greatings1 )+" "+this.getBDQ().getNom( 1 )+" "+getString( R.string.greatings2 )+getString( R.string.welcome ));
 
         //auto generated
         FloatingActionButton fab = (FloatingActionButton) findViewById( R.id.fab );
@@ -90,7 +90,7 @@ public class Main extends AppCompatActivity {
                 break;
                 //Si l'utilisateur clique sur le btn "Share"
             case R.id.action_share:
-                Toast.makeText(this, "Fonction en developpement\n (Veillez attendre l'API 26)",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString( R.string.share ),Toast.LENGTH_LONG).show();
                 break;
             default:
                 return super.onOptionsItemSelected(item);

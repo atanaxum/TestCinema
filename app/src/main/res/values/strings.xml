@@ -10,13 +10,14 @@
     <string name="action_settings">Parametres</string>
     <!-- Quizz -->
     <string name="btn_valider">Suivant</string>
+    <string name="succes">Bravo! VOus n\'avez pas fait de fautes!</string>
     <!-- Setting -->
+    <string name="share">Fonction en developpement\n (Veillez attendre l'API 26)</string>
+    <string name="greatings1">Bonjour </string>
+    <string name="greatings2"> (Vous pouvez changer le nom dans les parametres)\n</string>
     <string name="changerName">Saisisser un nom</string>
-    <string name="version">Version</string>
-    <string name="title_activity_setting">Parametres</string>
     <string name="param_nous">Qui sommes nous ?</string>
-    <string name="param_fr">Français</string>
-    <string name="param_en">Anglais</string>
+    <string name="title_activity_setting">Parametres</string>
     <string name="demandName">Saisissez votre nom</string>
 
 

@@ -2,6 +2,7 @@ package com.example.autumn.testcinema;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.PersistableBundle;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -67,7 +69,7 @@ public class Setting extends AppCompatActivity {
     public void createPopUp(){
         new AlertDialog.Builder(this)
                 .setView(R.layout.row)
-                .setPositiveButton("Valider", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString( android.R.string.yes ), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -82,7 +84,7 @@ public class Setting extends AppCompatActivity {
 
                     }
                 })
-                .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString( android.R.string.no ), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }
@@ -94,6 +96,19 @@ public class Setting extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         //Afficher le menu personnalisé
         getMenuInflater().inflate( R.menu.menu_main, menu );
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            //Si l'utilisateur clique sur le btn "Share"
+            case R.id.action_share:
+                Toast.makeText(this, getString( R.string.share ),Toast.LENGTH_LONG).show();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
         return true;
     }
 
