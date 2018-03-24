@@ -7,7 +7,7 @@
 
     <!-- Add -->
     <color name="colorPrimaryDarkBlue">#252439</color>
-    <color name="colorBlack">#000</color>
+    <color name="colorBlack">#000000</color>
 
     <!-- Autumn -->
     <color name="colorAutumn0">#FFE0B2</color>

@@ -18,6 +18,11 @@ public class BaseData extends SQLiteOpenHelper {
     public static final String COL_ID = "ID";                               //Nom de la colonne contenant les ids des questions
     public static final String COL_REP = "REP";                             //Nom de la colonne contenant les numeros des reponses justes
     public static final String COL_USER = "USR";                            //Nom de la colonne contenant les numeros des reponses données par l'utilisateur
+
+    public static final String TABLE_NAME_2 = "USER";                       //Nom de la table BD contenant les infos utilisateur
+    public static final String COL_ID_2 = "ID";
+    public static final String COL_NOM_2 = "NOM";
+
     private static final String TAG = "BaseData" ;
 
     public BaseData(Context context) {
@@ -35,6 +40,12 @@ public class BaseData extends SQLiteOpenHelper {
                 + COL_USER + " INTEGER);";
         db.execSQL(s);
 
+        String s1 = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_2 + "("
+                + COL_ID_2 + " INTEGER, "
+                + COL_NOM_2 + "  TEXT )";
+
+        db.execSQL(s1);
+
         Log.d( TAG,"BD CREATE Finish" );
     }
 
@@ -42,6 +53,9 @@ public class BaseData extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.d( TAG,"BD UPGRADE Start" );
         String s = "DROP TABLE IF EXISTS " + TABLE_NAME + ";";
+        db.execSQL(s);
+
+        s = "DROP TABLE IF EXISTS " + TABLE_NAME_2 + ";";
         db.execSQL(s);
         Log.d( TAG,"BD DELETE Finish" );
 
@@ -104,11 +118,12 @@ public class BaseData extends SQLiteOpenHelper {
         Log.d(TAG, "GET REPONSE Start");
         SQLiteDatabase db = this.getWritableDatabase();
 
+        //Requete recuperant la reponse juste à une question
         Cursor cursor = db.query(TABLE_NAME,
                 new String[]{COL_ID,COL_REP},
                 COL_ID + "=?",
                 new String[]{String.valueOf(id)},
-                null, null, null, null);    //Requete recuperant la reponse juste à une question
+                null, null, null, null);
         Log.d(TAG, "GET REPONSE Cursor créé avec succes");
 
         if (cursor != null) cursor.moveToFirst();
@@ -128,11 +143,12 @@ public class BaseData extends SQLiteOpenHelper {
         Log.d(TAG, "GET REPONSE USER Start");
         SQLiteDatabase db = this.getWritableDatabase();
 
+        //Requete recuperant la reponse juste à une question
         Cursor cursor = db.query(TABLE_NAME,
                 new String[]{COL_ID,COL_USER},
                 COL_ID + "=?",
                 new String[]{String.valueOf(id)},
-                null, null, null, null);    //Requete recuperant la reponse juste à une question
+                null, null, null, null);
         Log.d(TAG, "GET REPONSE USER Cursor créé avec succes");
 
         if (cursor != null) cursor.moveToFirst();
@@ -182,5 +198,50 @@ public class BaseData extends SQLiteOpenHelper {
 
         Log.d(TAG,"NB REPONSE count(COL_USR) = "+cursor.getString( cursor.getColumnIndex( "nb" )));
         return Integer.valueOf( cursor.getString( cursor.getColumnIndex( "nb" ))) ;
+    }
+
+
+
+    public boolean insertName(int id,String nom){
+        Log.d(TAG,"BD INSERT Start" );
+        SQLiteDatabase db = this.getWritableDatabase();                     //Ecrire dans la BD
+        ContentValues contentValues = new ContentValues();                  //Variables à inserer dans la teble
+        contentValues.put(COL_ID_2,id);
+        contentValues.put(COL_NOM_2,nom);
+        long result = db.insert(TABLE_NAME_2,null ,contentValues);
+        db.close();                                                         //Toujours fermer la BD apres modification
+        if(result == -1){
+            Log.d( TAG,"BD INSERT Fail" );
+            return false;
+
+        }else{
+            Log.d( TAG,"BD INSERT Succes" );
+            return true;
+        }
+    }
+
+
+    public String getNom(int id){
+        Log.d(TAG, "GET REPONSE Start");
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String s = "SELECT "+COL_NOM_2+" FROM "+TABLE_NAME_2 + " WHERE "+COL_ID_2+" == "+id;
+        Cursor cursor = db.rawQuery(s,null);
+        cursor.moveToFirst();
+
+        Log.d(TAG,"NOM UTILISATEUR) = "+cursor.getString( cursor.getColumnIndex( COL_NOM_2 )));
+        return cursor.getString(cursor.getColumnIndex( COL_NOM_2 ));
+    }
+
+    public int getNB() {
+        Log.d(TAG, "NB Start");
+        SQLiteDatabase db = this.getWritableDatabase( );
+
+        String s = "SELECT count(" + COL_ID_2 + ") as nb FROM " + TABLE_NAME_2;
+        Cursor cursor = db.rawQuery(s, null);
+        cursor.moveToFirst( );
+
+        Log.d(TAG, "NB count(ID) = " + cursor.getString(cursor.getColumnIndex("nb")));
+        return Integer.valueOf(cursor.getColumnIndex("nb"));
     }
 }

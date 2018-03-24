@@ -17,17 +17,20 @@ public class Accueil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
 
-        Button lancer = findViewById(R.id.buttonsub);                       //Bouton pour lancer l'application
-        lancer.setOnClickListener( new View.OnClickListener() {             //Envoye du contenu du editText à l'Activité principale
+        //Bouton pour lancer l'application
+        Button lancer = findViewById(R.id.buttonsub);
+        //Envoye du contenu du editText à l'Activité principale
+        lancer.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //Lancer l'activité Main
                 Accueil.this.startActivity(new Intent( Accueil.this, Main.class ));
+                //Animer la transition
                 overridePendingTransition(R.anim.slide_vertical_in, R.anim.slide_vertical_out );
             }
         } );
 
-        //Mise en place de l'animation lors du lancement
+        //Mise en place de l'animation des element de la page lors du lancement
         LinearLayout l1 =  findViewById(R.id.l1);
         LinearLayout l2 =  findViewById(R.id.l2);
 

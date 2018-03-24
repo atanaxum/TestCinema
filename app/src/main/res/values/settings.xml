@@ -4,7 +4,6 @@
         <item>@string/changeLangue</item>
     </string-array>
     <string-array name="settingsAbout">
-        <item>@string/about</item>
         <item>Version</item>
     </string-array>
 </resources>
