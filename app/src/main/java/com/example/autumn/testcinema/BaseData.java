@@ -204,6 +204,7 @@ public class BaseData extends SQLiteOpenHelper {
 
     public boolean insertName(int id,String nom){
         Log.d(TAG,"BD INSERT Start" );
+        Log.d( TAG, "insertnom: "+ nom );
         SQLiteDatabase db = this.getWritableDatabase();                     //Ecrire dans la BD
         ContentValues contentValues = new ContentValues();                  //Variables à inserer dans la teble
         contentValues.put(COL_ID_2,id);
@@ -220,6 +221,18 @@ public class BaseData extends SQLiteOpenHelper {
         }
     }
 
+    public boolean updateName(int id,String nom) {
+        Log.d(TAG,"BD UPDATE Name "+id+" Start avec name = "+nom);
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_ID_2,id);
+        contentValues.put(COL_NOM_2,nom);
+        db.update(TABLE_NAME_2, contentValues, "ID = ?",new String[] {   ""+id });
+        db.close();
+        Log.d(TAG,"BD UPDATE Name Finish");
+        return true;
+    }
+
 
     public String getNom(int id){
         Log.d(TAG, "GET REPONSE Start");
@@ -229,7 +242,7 @@ public class BaseData extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(s,null);
         cursor.moveToFirst();
 
-        Log.d(TAG,"NOM UTILISATEUR) = "+cursor.getString( cursor.getColumnIndex( COL_NOM_2 )));
+        Log.d(TAG,"GET NOM = "+cursor.getString( cursor.getColumnIndex( COL_NOM_2 )));
         return cursor.getString(cursor.getColumnIndex( COL_NOM_2 ));
     }
 

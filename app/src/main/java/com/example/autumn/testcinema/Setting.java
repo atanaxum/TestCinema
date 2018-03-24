@@ -1,13 +1,19 @@
 package com.example.autumn.testcinema;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,7 +32,7 @@ import java.util.Locale;
 public class Setting extends AppCompatActivity {
     private static final String TAG = "Nom";
     private EditText edit;
-    private BaseData bdq  ;
+    private BaseData bdq;
 
 
     @Override
@@ -38,41 +44,72 @@ public class Setting extends AppCompatActivity {
         this.inintBDQ();
         Log.d( TAG,"BD Crée" );
 
-        final TextView t = findViewById(R.id.textView);
-
-        edit = findViewById(R.id.editName);
-        Button b = findViewById(R.id.valider);
-        b.setText("Valider");
-        b.setOnClickListener(new View.OnClickListener( ) {
-            @Override
-            public void onClick(View v) {
-                String s = String.valueOf(edit.getText());
-                bdq.insertName(1,s);
-                String nom = bdq.getNom(1);
-                Log.d( TAG, "voila:"+nom );
-            }
-        });
-        //edit.setHint(bdq.getNom(1));
-
         ListView liste = findViewById(R.id.parametres);
         liste.setFocusable(true);
         liste.setDivider(null);
 
-        String[] valeursOther = getResources().getStringArray(R.array.settingsAbout); // faut modif la ligne par l
-        ArrayAdapter<String> adapterOther = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,valeursOther);
-        liste.setAdapter(adapterOther);
+        String[] valeurs = getResources().getStringArray(R.array.settings);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,valeurs);
+        liste.setAdapter(adapter);
         liste.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+            public void onItemClick(AdapterView<?> adapterView, final View view, int position, long l) {
                 switch(position){
                     case 0:
-                        Toast.makeText(Setting.this, "Par Peter J. et Nikita Y.", Toast.LENGTH_LONG).show();
+                        Setting.this.createPopUp();
                         break;
                     case 1:
+                        Toast.makeText(Setting.this, "Par Peter J. et Nikita Y.", Toast.LENGTH_LONG).show();
                         break;
                 }
             }
         });
+    }
+
+    public void createPopUp(){
+        new AlertDialog.Builder(this)
+                .setView(R.layout.row)
+                .setPositiveButton(getString( android.R.string.yes ), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        EditText editPOP = (EditText) ((AlertDialog) dialog).findViewById(R.id.editNamePOP);
+                        String s = String.valueOf(editPOP.getText());
+                        bdq.updateName(1,s);
+                        String nom = bdq.getNom(1);
+
+                        //un simple Hello pour voir si on passe par ici
+                        Toast toast = Toast.makeText(Setting.this, "Votre nom est "+nom, Toast.LENGTH_SHORT);
+                        toast.show();
+
+                    }
+                })
+                .setNegativeButton(getString( android.R.string.no ), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Afficher le menu personnalisé
+        getMenuInflater().inflate( R.menu.menu_main, menu );
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            //Si l'utilisateur clique sur le btn "Share"
+            case R.id.action_share:
+                Toast.makeText(this, getString( R.string.share ),Toast.LENGTH_LONG).show();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
     public BaseData getBDQ(){
@@ -83,16 +120,6 @@ public class Setting extends AppCompatActivity {
         if(this.getBDQ().getNB()==0){                                  //SI la BD n'existe pas: la construire
             bdq.insertName(1,"Tommy Wiseau");
         }
-    }
-
-    public void setLocale(String lang) {
-        Locale myLocale = new Locale(lang);
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.locale = myLocale;
-        res.updateConfiguration(conf, dm);
-        finish();
     }
 }
 

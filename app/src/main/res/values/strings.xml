@@ -10,9 +10,15 @@
     <string name="action_settings">Parametres</string>
     <!-- Quizz -->
     <string name="btn_valider">Suivant</string>
+    <string name="succes">Bravo! VOus n\'avez pas fait de fautes!</string>
     <!-- Setting -->
-    <string name="changeLangue">Changez la langue</string>
-    <string name="about">C\'est nous</string>
+    <string name="share">Fonction en developpement\n (Veillez attendre l'API 26)</string>
+    <string name="greatings1">Bonjour </string>
+    <string name="greatings2"> (Vous pouvez changer le nom dans les parametres)\n</string>
+    <string name="changerName">Saisisser un nom</string>
+    <string name="param_nous">Qui sommes nous ?</string>
+    <string name="title_activity_setting">Parametres</string>
+    <string name="demandName">Saisissez votre nom</string>
 
 
     <string name="question1">C’est notre RAIS a nous, René COTI ! Un grand homme, il marquera l’histoire!</string>
@@ -64,10 +70,4 @@
     <string name="question10_rep1">Dallas Buyers Club</string>
     <string name="question10_rep2">Le Cinquième Élément</string>
     <string name="question10_rep3">Hightlander</string>
-
-    <string name="title_activity_setting">Sign in</string>
-    <string name="param_nous">Qui sommes nous ?</string>
-    <string name="param_fr">Français</string>
-    <string name="param_en">Anglais</string>
-    <string name="demandName">Saisissez votre nom</string>
 </resources>
