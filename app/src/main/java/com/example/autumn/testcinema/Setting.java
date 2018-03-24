@@ -49,7 +49,6 @@ public class Setting extends AppCompatActivity {
                 String s = String.valueOf(edit.getText());
                 bdq.insertName(1,s);
                 String nom = bdq.getNom(1);
-                Log.d( TAG, "voila:"+nom );
             }
         });
         //edit.setHint(bdq.getNom(1));
