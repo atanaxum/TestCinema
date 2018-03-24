@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="settingsGeneral">
-        <item>@string/changeLangue</item>
-    </string-array>
-    <string-array name="settingsAbout">
+    <string-array name="settings">
+        <item>Changer Nom</item>
         <item>Version</item>
     </string-array>
 </resources>

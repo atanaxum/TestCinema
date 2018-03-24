@@ -33,7 +33,7 @@ public class Main extends AppCompatActivity {
         this.inintBDQ();
 
         large = findViewById(R.id.large_text);
-        large.setText("Bonjour "+this.getBDQ().getNom( 1 )+" (Vous pouvez changer le nom dans les parametres)\n"+R.string.welcome);
+        large.setText("Bonjour "+this.getBDQ().getNom( 1 )+" (Vous pouvez changer le nom dans les parametres)\n"+getString( R.string.welcome ));
 
         //auto generated
         FloatingActionButton fab = (FloatingActionButton) findViewById( R.id.fab );

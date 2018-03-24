@@ -34,11 +34,11 @@
     <string name="question6">Which would be worse - to live as a monster? Or to die as a good man?</string>
     <string name="question6_rep1">The Dark Knight</string>
     <string name="question6_rep2">Shutter Island</string>
-    <string name="question6_rep3">Docteur Jekyll et M. Hyde</string>
+    <string name="question6_rep3">Docteur Jekyll and M. Hyde</string>
 
     <string name="question7">YOU ARE TEARING ME APART LISA !</string>
     <string name="question7_rep1">The Room</string>
-    <string name="question7_rep2">Les Simpsons</string>
+    <string name="question7_rep2">The Simpsons</string>
     <string name="question7_rep3">Rambo</string>
 
     <string name="question8">I hope you\'re pleased with yourselves. We could all have been killed - or worse, expelled. Now if you don\'t mind, I'm going to bed.</string>
@@ -46,7 +46,7 @@
     <string name="question8_rep2">Ferris Bueller\'s Day Off</string>
     <string name="question8_rep3">Harry Potter</string>
 
-    <string name="question9">Come on Frank ! You know I love suprise ! </string>
+    <string name="question9">Come on Frank ! You know I love surprise ! </string>
     <string name="question9_rep1">Smiley Face</string>
     <string name="question9_rep2">The Game</string>
     <string name="question9_rep3">The Birds</string>
