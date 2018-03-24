@@ -65,7 +65,7 @@
     <string name="question10_rep2">Le Cinquième Élément</string>
     <string name="question10_rep3">Hightlander</string>
 
-    <string name="title_activity_setting">Sign in</string>
+    <string name="title_activity_setting">Parametres</string>
     <string name="param_nous">Qui sommes nous ?</string>
     <string name="param_fr">Français</string>
     <string name="param_en">Anglais</string>

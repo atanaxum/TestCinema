@@ -18,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main extends AppCompatActivity {
+
+    private BaseData bdq;
     TextView large;
 
     @Override
@@ -27,8 +29,11 @@ public class Main extends AppCompatActivity {
         Toolbar toolbar =  findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
 
+        bdq = new BaseData(this);
+        this.inintBDQ();
+
         large = findViewById(R.id.large_text);
-        large.setText(R.string.welcome);
+        large.setText("Bonjour "+this.getBDQ().getNom( 1 )+" (Vous pouvez changer le nom dans les parametres)\n"+R.string.welcome);
 
         //auto generated
         FloatingActionButton fab = (FloatingActionButton) findViewById( R.id.fab );
@@ -92,6 +97,17 @@ public class Main extends AppCompatActivity {
         }
         return true;
     }
+
+    public BaseData getBDQ(){
+        return bdq;
+    }
+
+    public void inintBDQ(){
+        if(this.getBDQ().getNB()==0){                                  //SI la BD n'existe pas: la construire
+            bdq.insertName(1,"Tommy Wiseau");
+        }
+    }
+
 
 
 }

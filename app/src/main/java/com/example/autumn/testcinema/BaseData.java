@@ -221,6 +221,18 @@ public class BaseData extends SQLiteOpenHelper {
         }
     }
 
+    public boolean updateName(int id,String nom) {
+        Log.d(TAG,"BD UPDATE Name "+id+" Start avec name = "+nom);
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_ID_2,id);
+        contentValues.put(COL_NOM_2,nom);
+        db.update(TABLE_NAME_2, contentValues, "ID = ?",new String[] {   ""+id });
+        db.close();
+        Log.d(TAG,"BD UPDATE Name Finish");
+        return true;
+    }
+
 
     public String getNom(int id){
         Log.d(TAG, "GET REPONSE Start");

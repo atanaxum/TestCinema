@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,7 +27,7 @@ import java.util.Locale;
 public class Setting extends AppCompatActivity {
     private static final String TAG = "Nom";
     private EditText edit;
-    private BaseData bdq  ;
+    private BaseData bdq;
 
 
     @Override
@@ -47,7 +48,7 @@ public class Setting extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String s = String.valueOf(edit.getText());
-                bdq.insertName(1,s);
+                bdq.updateName(1,s);
                 String nom = bdq.getNom(1);
             }
         });
@@ -73,7 +74,13 @@ public class Setting extends AppCompatActivity {
             }
         });
     }
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Afficher le menu personnalisé
+        getMenuInflater().inflate( R.menu.menu_main, menu );
+        return true;
+    }
+    
     public BaseData getBDQ(){
         return bdq;
     }

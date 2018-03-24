@@ -49,7 +49,7 @@
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_main"
             android:parentActivityName=".Accueil"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Accueil" />
