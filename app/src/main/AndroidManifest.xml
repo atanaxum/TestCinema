@@ -24,7 +24,7 @@
         android:launchMode="singleTask"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppTheme.NoActionBar"
         android:windowSoftInputMode="adjustPan">
         <activity
             android:name=".Quizz"
@@ -57,7 +57,9 @@
         </activity>
         <activity
             android:name=".Setting"
-            android:label="@string/title_activity_setting"></activity>
+            android:label="@string/title_activity_setting"
+            android:parentActivityName=".Accueil"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
