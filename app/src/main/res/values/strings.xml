@@ -2,7 +2,7 @@
     <!-- Accueil -->
     <string name="app_name">CinéQuizz</string>
     <string name="titre">CinéQuizz</string>
-    <string name="sous_titre">Trouverez vous d\'où viennent ces répliques</string>
+    <string name="sous_titre">Trouverez vous d\'où viennent ces répliques?</string>
     <string name="btn_launcher">C\'est parti!</string>
     <!-- Main -->
     <string name="title_activity_main">Lancez le Test</string>
@@ -62,20 +62,12 @@
 
     <string name="question10">Leeloo dallas multipass</string>
     <string name="question10_rep1">Dallas Buyers Club</string>
-    <string name="question10_rep2">5eme Elément</string>
+    <string name="question10_rep2">Le Cinquième Élément</string>
     <string name="question10_rep3">Hightlander</string>
-    <string name="title_activity_setting">Sign in</string>
 
-    <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="title_activity_setting">Sign in</string>
+    <string name="param_nous">Qui sommes nous ?</string>
+    <string name="param_fr">Français</string>
+    <string name="param_en">Anglais</string>
+    <string name="demandName">Saisissez votre nom</string>
 </resources>
