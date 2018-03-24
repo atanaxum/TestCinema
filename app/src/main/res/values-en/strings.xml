@@ -6,6 +6,9 @@
     <string name="btn_launcher">Let\'s start!</string>
     <string name="action_settings">Settings</string>
 
+    <string name="changerName">Enter a name</string>
+    <string name="version">Version</string>
+
     <string name="question1">May the force be with you</string>
     <string name="question1_rep1">Rocky</string>
     <string name="question1_rep2">Star Trek</string>
